@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: stylehub-store-api
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: apps/api
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        value: https://akmxazeymeihrdfkcqpq.supabase.co
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        value: https://stylehub-store-seven.vercel.app
+      - key: ADMIN_URL
+        value: https://stylehub-store-seven.vercel.app/admin
+      - key: CORS_ORIGINS
+        value: https://stylehub-store-seven.vercel.app
+      - key: ALLOW_VERCEL_PREVIEW_ORIGINS
+        value: "false"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SLACK_ORDER_CHANNEL_ID
+        value: C0B9MMN4GTH
+      - key: SLACK_STATUS_CHANNEL_ID
+        value: C0B9MMN4GTH
+      - key: SLACK_WEBHOOK_URL
+        sync: false
+
